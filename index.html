@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Windows 12 Concept</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="desktop">
+        <div id="top-bar">
+            <div class="left-section">
+                <span class="search-icon">🔍</span>
+                <input type="text" placeholder="Search" id="global-search">
+            </div>
+            <div class="center-section">
+                <div id="clock">00:00</div>
+            </div>
+            <div class="right-section">
+                <span class="status-icon">📶</span>
+                <span class="status-icon">🔋</span>
+                <span class="status-icon">🔊</span>
+            </div>
+        </div>
+
+        <div id="start-menu" class="hidden">
+            <div class="start-content">
+                <div class="pinned-apps">
+                    <h3>Pinned</h3>
+                    <div class="app-grid">
+                        <div class="app-item"><div class="app-icon edge"></div><span>Edge</span></div>
+                        <div class="app-item"><div class="app-icon mail"></div><span>Mail</span></div>
+                        <div class="app-item"><div class="app-icon photos"></div><span>Photos</span></div>
+                        <div class="app-item"><div class="app-icon store"></div><span>Store</span></div>
+                        <div class="app-item"><div class="app-icon settings"></div><span>Settings</span></div>
+                        <div class="app-item"><div class="app-icon explorer"></div><span>Explorer</span></div>
+                    </div>
+                </div>
+                <div class="recommended">
+                    <h3>Recommended</h3>
+                    <div class="rec-item">Latest Concept Design.pdf</div>
+                    <div class="rec-item">Meeting Notes.docx</div>
+                </div>
+            </div>
+            <div class="start-footer">
+                <div class="user-profile">
+                    <div class="user-avatar"></div>
+                    <span>User</span>
+                </div>
+                <div class="power-btn">⏻</div>
+            </div>
+        </div>
+
+        <div id="taskbar-container">
+            <div id="taskbar">
+                <div class="dock-item" id="start-btn">🪟</div>
+                <div class="dock-separator"></div>
+                <div class="dock-item">📂</div>
+                <div class="dock-item">🌐</div>
+                <div class="dock-item">💬</div>
+                <div class="dock-item">🎵</div>
+                <div class="dock-item">⚙️</div>
+            </div>
+        </div>
+    </div>
+    <script src="main.js"></script>
+</body>
+</html>
