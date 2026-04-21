@@ -13,11 +13,20 @@
   "author": "Apache Cordova Team",
   "license": "Apache-2.0",
   "devDependencies": {
-    "cordova-android": "^15.0.0"
+    "cordova-android": "^15.0.0",
+    "cordova-plugin-battery-status": "^2.0.3",
+    "cordova-plugin-compat": "^1.2.0",
+    "cordova-plugin-flashlight": "^3.2.0",
+    "cordova-plugin-vibration": "^3.1.1"
   },
   "cordova": {
     "platforms": [
       "android"
-    ]
+    ],
+    "plugins": {
+      "cordova-plugin-flashlight": {},
+      "cordova-plugin-vibration": {},
+      "cordova-plugin-battery-status": {}
+    }
   }
 }

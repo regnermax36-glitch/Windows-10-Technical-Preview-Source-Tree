@@ -24,6 +24,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const sendBtn = document.getElementById('send-btn');
 
     let sidebarOpen = false;
+    let flashlightOn = false;
     let wllama = null;
     let isModelLoaded = false;
 
@@ -54,8 +55,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     // Toggle Edge Sidebar
     edgeHandle.addEventListener('click', () => {
         sidebarOpen = !sidebarOpen;
-        edgeSidebar.style.right = sidebarOpen ? '0px' : '-100px';
-        edgeHandle.style.right = sidebarOpen ? '80px' : '0px';
+        edgeSidebar.style.right = sidebarOpen ? '0px' : '-120px';
+        edgeHandle.style.right = sidebarOpen ? '100px' : '0px';
     });
 
     // Toggle Jules Overlay
@@ -69,6 +70,37 @@ document.addEventListener('DOMContentLoaded', async () => {
             julesResponse.classList.add('hidden');
         }
     });
+
+    // Native System Controls
+    const executeSystemCommand = (command) => {
+        if (typeof window.window.plugins === 'undefined' && typeof navigator.vibrate === 'undefined') {
+            console.warn('Native controls not available in browser');
+            return;
+        }
+
+        const cmd = command.toLowerCase();
+
+        if (cmd.includes('flashlight') || cmd.includes('torch')) {
+            if (window.plugins && window.plugins.flashlight) {
+                flashlightOn = !flashlightOn;
+                window.plugins.flashlight.switchOn(); // Simplify for demo, usually has toggle
+                if (flashlightOn) window.plugins.flashlight.switchOn();
+                else window.plugins.flashlight.switchOff();
+            }
+        }
+
+        if (cmd.includes('vibrate') || cmd.includes('buzz')) {
+            if (navigator.vibrate) {
+                navigator.vibrate(500);
+            }
+        }
+
+        if (cmd.includes('battery')) {
+            window.addEventListener('batterystatus', (status) => {
+                askJules(`Your battery is currently at ${status.level}% and is ${status.isPlugged ? 'charging' : 'discharging'}.`);
+            }, { once: true });
+        }
+    };
 
     // Real AI Inference
     const askJules = async (prompt) => {
@@ -87,6 +119,13 @@ document.addEventListener('DOMContentLoaded', async () => {
                     responseText.innerText = fullResponse;
                 }
             });
+
+            // Check for system commands in AI response
+            if (fullResponse.toLowerCase().includes('flashlight') ||
+                fullResponse.toLowerCase().includes('torch') ||
+                fullResponse.toLowerCase().includes('vibrate')) {
+                executeSystemCommand(fullResponse);
+            }
         } catch (err) {
             console.error('Inference Error:', err);
             responseText.innerText = 'Sorry, my neural links are fuzzy right now.';

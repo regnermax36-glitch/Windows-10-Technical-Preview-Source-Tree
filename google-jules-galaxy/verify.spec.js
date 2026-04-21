@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 
 test('capture google jules screenshot', async ({ page }) => {
   await page.goto('http://localhost:5173');
-  await page.waitForSelector('#home-screen');
+  await page.waitForSelector('#bg-layer');
 
   // Take screenshot of the initial state
   await page.screenshot({ path: 'screenshots/initial.png' });
