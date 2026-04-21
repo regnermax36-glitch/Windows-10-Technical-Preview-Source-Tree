@@ -50,7 +50,10 @@
             <div class="flex-1 overflow-y-auto space-y-6">
                 <div class="flex items-center gap-3">
                     <div class="w-8 h-8 rounded-full bg-gradient-to-r from-blue-400 to-indigo-600 animate-pulse-glow"></div>
-                    <h2 class="text-xl font-medium tracking-tight">How can I help, Jules?</h2>
+                    <div class="flex flex-col">
+                        <h2 class="text-xl font-medium tracking-tight">How can I help, Jules?</h2>
+                        <span id="status-indicator" class="text-[10px] text-indigo-300 uppercase tracking-widest hidden">Initializing...</span>
+                    </div>
                 </div>
 
                 <!-- Suggestions -->
@@ -66,11 +69,17 @@
                 <!-- Response Mock (Hidden initially) -->
                 <div id="jules-response" class="hidden space-y-4">
                     <div class="p-4 bg-indigo-500/10 border border-indigo-500/20 rounded-2xl">
-                        <p class="text-sm leading-relaxed text-indigo-100">
-                            I've set the temperature to 21°C and checked the Family Hub. You're low on milk. Shall I add it to your Keep list?
+                        <p id="response-text" class="text-sm leading-relaxed text-indigo-100">
+                            Thinking...
                         </p>
                     </div>
                 </div>
+            </div>
+
+            <!-- Chat Input -->
+            <div class="mt-4 flex gap-2">
+                <input type="text" id="chat-input" placeholder="Ask Jules anything..." class="flex-1 bg-white/10 border border-white/10 rounded-xl px-4 py-2 text-sm focus:outline-none focus:border-indigo-400/50 transition-colors">
+                <button id="send-btn" class="w-10 h-10 bg-indigo-500 rounded-xl flex items-center justify-center">⬆️</button>
             </div>
 
             <!-- Listening Indicator -->
