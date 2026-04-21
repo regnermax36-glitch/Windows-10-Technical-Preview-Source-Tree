@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Jules for Galaxy</title>
+    <link rel="stylesheet" href="./style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="cordova.js"></script>
+</head>
+<body class="bg-black text-white font-sans overflow-hidden h-screen w-screen">
+
+    <!-- Full-Screen Content Area -->
+    <div class="relative w-full h-full bg-galaxy-bg overflow-hidden">
+
+        <!-- Background Layer -->
+        <div id="bg-layer" class="absolute inset-0 bg-gradient-to-br from-indigo-950 via-black to-indigo-900 opacity-80"></div>
+
+        <!-- Edge Panel Handle -->
+        <div id="edge-handle" class="absolute right-0 top-1/3 w-2 h-24 bg-white/40 rounded-l-full cursor-pointer hover:bg-white/60 transition-all z-50 border-y border-l border-white/20"></div>
+
+        <!-- Edge Panel Sidebar -->
+        <div id="edge-sidebar" class="absolute right-[-120px] top-0 h-full w-[100px] bg-black/60 backdrop-blur-3xl border-l border-white/10 transition-all duration-300 z-40 flex flex-col items-center py-20 gap-10">
+            <div class="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center cursor-pointer hover:bg-white/20">🏠</div>
+            <div class="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center cursor-pointer hover:bg-white/20">📅</div>
+            <div class="w-10 h-10 rounded-xl bg-indigo-500/20 border border-indigo-400/50 flex items-center justify-center cursor-pointer" id="jules-trigger">✨</div>
+            <div class="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center cursor-pointer hover:bg-white/20">⚙️</div>
+        </div>
+
+        <!-- Jules Overlay -->
+        <div id="jules-overlay" class="absolute inset-x-4 bottom-[-100%] h-[80%] bg-white/5 backdrop-blur-3xl border border-white/20 rounded-t-[3rem] transition-all duration-500 z-[60] p-8 flex flex-col shadow-[0_-20px_50px_rgba(0,0,0,0.5)]">
+            <div class="w-12 h-1 bg-white/20 rounded-full mx-auto mb-6"></div>
+
+            <div class="flex-1 overflow-y-auto space-y-6">
+                <div class="flex items-center gap-3">
+                    <div class="w-8 h-8 rounded-full bg-gradient-to-r from-blue-400 to-indigo-600 animate-pulse-glow"></div>
+                    <div class="flex flex-col">
+                        <h2 class="text-xl font-medium tracking-tight">How can I help, Jules?</h2>
+                        <span id="status-indicator" class="text-[10px] text-indigo-300 uppercase tracking-widest hidden">Initializing...</span>
+                    </div>
+                </div>
+
+                <!-- Suggestions -->
+                <div class="grid grid-cols-2 gap-3">
+                    <button class="bg-white/10 hover:bg-white/20 p-4 rounded-2xl text-left text-sm transition-colors border border-white/5">
+                        Summarize recent emails
+                    </button>
+                    <button id="smart-things-btn" class="bg-white/10 hover:bg-white/20 p-4 rounded-2xl text-left text-sm transition-colors border border-white/5">
+                        Prepare living room
+                    </button>
+                </div>
+
+                <!-- Response Mock (Hidden initially) -->
+                <div id="jules-response" class="hidden space-y-4">
+                    <div class="p-4 bg-indigo-500/10 border border-indigo-500/20 rounded-2xl">
+                        <p id="response-text" class="text-sm leading-relaxed text-indigo-100">
+                            Thinking...
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chat Input -->
+            <div class="mt-4 flex gap-2">
+                <input type="text" id="chat-input" placeholder="Ask Jules anything..." class="flex-1 bg-white/10 border border-white/10 rounded-xl px-4 py-2 text-sm focus:outline-none focus:border-indigo-400/50 transition-colors">
+                <button id="send-btn" class="w-10 h-10 bg-indigo-500 rounded-xl flex items-center justify-center">⬆️</button>
+            </div>
+
+            <!-- Listening Indicator -->
+            <div class="mt-auto pt-4 flex flex-col items-center">
+                <div class="w-full h-[2px] bg-gradient-to-r from-transparent via-indigo-400 to-transparent animate-pulse opacity-50 mb-4"></div>
+                <div class="flex gap-1 items-center h-4">
+                    <div class="w-1 h-2 bg-blue-400 rounded-full animate-bounce"></div>
+                    <div class="w-1 h-4 bg-indigo-400 rounded-full animate-bounce [animation-delay:-0.2s]"></div>
+                    <div class="w-1 h-3 bg-blue-500 rounded-full animate-bounce [animation-delay:-0.4s]"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- S-Pen Interaction Layer -->
+        <div id="spen-selection" class="absolute inset-0 pointer-events-none z-[100] hidden">
+             <div id="selection-box" class="absolute border-2 border-dashed border-indigo-400 bg-indigo-400/10 rounded-lg"></div>
+        </div>
+
+    </div>
+
+    <script type="module" src="./main.js"></script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --glass-bg: rgba(255, 255, 255, 0.05);
+  --glass-border: rgba(255, 255, 255, 0.1);
+}
+
+body {
+  font-family: 'Google Sans', 'Samsung One', system-ui, -apple-system, sans-serif;
+}
+
+.backdrop-blur-xl {
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+}
+
+.backdrop-blur-2xl {
+  backdrop-filter: blur(40px);
+  -webkit-backdrop-filter: blur(40px);
+}
+
+/* Custom Glassmorphism Utility */
+.glass {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(12px);
+}
+
+/* S-Pen Interaction Animation */
+@keyframes selection-pulse {
+  0% { border-color: rgba(129, 140, 248, 0.5); }
+  50% { border-color: rgba(129, 140, 248, 1); }
+  100% { border-color: rgba(129, 140, 248, 0.5); }
+}
+
+.selection-active {
+  animation: selection-pulse 1s infinite;
+}
